@@ -62,3 +62,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # added HAML to Rails
 gem "haml-rails"
+gem 'sidekiq'
+gem 'nokogiri'
+

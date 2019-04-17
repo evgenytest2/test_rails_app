@@ -1,1 +1,37 @@
 %h2 Все товары
+- if @items
+  %table
+    %tr
+      %th id
+      %th название
+      %th описание
+      %th цена
+      %th url
+      %th возраст
+      %th вендор
+      %th модель
+      %th картинки
+    - @items.each do |item|
+      %tr
+        %td
+          = item.id
+        %td
+          = item.name
+        %td
+          = item.description
+        %td
+          = item.price
+        %td
+          = item.source_url
+        %td
+          = item.age
+        %td
+          = item.vendor
+        %td
+          = item.model
+        %td
+          - item.pictures.each do |pic|
+            %img{:src => pic.url}
+- else
+  %p Товаров в БД пока нет
+
