@@ -1,1 +1,38 @@
+%p
+  = link_to "Вернуться на главную", root_path
+
 %h2 Страница товара
+
+
+%table
+  %tr
+    %th id
+    %th название
+    %th описание
+    %th цена
+    %th url
+    %th возраст
+    %th вендор
+    %th модель
+    %th картинки
+  %tr
+    %td
+      = @item.id
+    %td
+      = @item.name
+    %td
+      = @item.description
+    %td
+      = @item.price
+    %td
+      = @item.source_url
+    %td
+      = @item.age
+    %td
+      = @item.vendor
+    %td
+      = @item.model
+
+%p
+  - @item.pictures.each do |pic|
+    %img{:src => pic.url}

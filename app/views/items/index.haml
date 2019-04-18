@@ -1,5 +1,5 @@
 %h2 Все товары
-- if @items
+- if @items.size != 0
   %table
     %tr
       %th id
@@ -14,7 +14,7 @@
     - @items.each do |item|
       %tr
         %td
-          = item.id
+          = link_to "#{item.id}", item
         %td
           = item.name
         %td
