@@ -1,5 +1,13 @@
 %h2 Все товары
-- if @items.size != 0
+
+.form-group-search-items.form-inline
+  = form_tag items_path, :id => 'form-group-search-requests-get', :method => 'get'  do
+    .form-group
+      = text_field_tag :search, params[:search], placeholder: "введите название товара", :class => "form-control col-md-4", :id => "searching_text_input"
+    .form-group
+      = submit_tag "Поиск", :name => nil, :class => "btn btn-default"
+
+- if Item.any?
   %table
     %tr
       %th id
@@ -32,6 +40,6 @@
         %td
           - item.pictures.each do |pic|
             %img{:src => pic.url}
+  = paginate @items
 - else
-  %p Товаров в БД пока нет
-
+  %p нет записей в БД

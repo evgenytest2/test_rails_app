@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show] do
     collection do
       get 'import'
+      post 'import_data'
     end
   end  
 end

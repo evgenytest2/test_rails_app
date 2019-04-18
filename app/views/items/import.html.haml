@@ -1,1 +1,11 @@
 %h2 Импортировать товары
+
+- if Item.any?
+  %p Время создания последнего товара в БД:
+  %p
+    = @last_item.created_at
+- else
+  %p В ДБ еще нет товаров
+
+%p Нажмите кнопку для редактировани продуктов:
+= button_to "импорт!", import_data_items_path , form_class: "import-form-button", :remote=>true
