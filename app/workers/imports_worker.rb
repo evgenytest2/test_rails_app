@@ -15,7 +15,6 @@ class ImportsWorker
       result_array = []
       doc = Nokogiri::XML(open(xml_url), nil, 'UTF-8')
       doc.xpath('//offer').each do |el|
-        #puts el
         offer_name = el.css('name').text
         offer_model = el.css('model').text
         if offer_name == "" && offer_model == ""
@@ -33,7 +32,6 @@ class ImportsWorker
           model: offer_model,
           pictures: el.css('picture').map { |pic| pic.text }.join(',').to_s
         }
-        #puts offer_hash
         result_array << offer_hash
       end
       return result_array
@@ -46,7 +44,6 @@ class ImportsWorker
     end
     
     def create_db_items_array
-      t1 = Time.now
       result_array = []
       Item.all.each do |i|
         item_hash = {
@@ -61,8 +58,6 @@ class ImportsWorker
         }
         result_array << item_hash
       end
-      t2 = Time.now
-      puts "------create_existing_names_array TIME #{t2-t1}"
       result_array
     end
 
@@ -71,7 +66,6 @@ class ImportsWorker
     end
     
     array_for_upload = create_array_for_upload(create_db_items_array, all_items(urls_array))
-    puts array_for_upload.first
     Item.basic_method_with_transaction(array_for_upload)
    
 

@@ -1,3 +1,0 @@
-class Picture < ApplicationRecord
-
-end
