@@ -30,8 +30,8 @@ class ImportsWorker
           description: el.css('description').text,
           age: el.css('age').text,
           vendor: el.css('vendor').text,
-          model: offer_model
-          #pictures: "#{el.css('picture').map { |pic| pic.text }.join(',')}" 
+          model: offer_model,
+          pictures: el.css('picture').map { |pic| pic.text }.join(',').to_s
         }
         #puts offer_hash
         result_array << offer_hash
@@ -56,8 +56,8 @@ class ImportsWorker
           description: i[:description],
           age: i[:age],
           vendor: i[:vendor],
-          model: i[:model]
-          #pictures: i[:pictures]
+          model: i[:model],
+          pictures: i[:pictures]
         }
         result_array << item_hash
       end
@@ -71,6 +71,7 @@ class ImportsWorker
     end
     
     array_for_upload = create_array_for_upload(create_db_items_array, all_items(urls_array))
+    puts array_for_upload.first
     Item.basic_method_with_transaction(array_for_upload)
    
 
