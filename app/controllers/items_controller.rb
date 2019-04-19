@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.search(params[:search]).page params[:page]
+    @items = Item.search(params[:search]).order(sort_column + ' ' + sort_direction).page params[:page]
   end
 
   def show
@@ -13,5 +13,14 @@ class ItemsController < ApplicationController
 
   def import_data
     ImportsWorker.perform_async
+  end
+
+private
+  def sort_column
+    params[:sort] || "price"
+  end
+  
+  def sort_direction
+    params[:direction] || "asc"
   end
 end
