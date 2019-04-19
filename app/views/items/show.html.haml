@@ -34,5 +34,6 @@
       = @item.model
 
 %p
-  - @item.pictures.each do |pic|
-    %img{:src => pic.url}
+  - if @item.pictures && @item.pictures != ""
+    - @item.pictures.split(",").each do |pic|
+      %img{:src => pic}

@@ -9,4 +9,13 @@ class Item < ApplicationRecord
     end
   end
 
+  class << self
+    def basic_method_with_transaction(items)
+      transaction do
+        create items
+        #import([:name, :source_url, :price, :description, :age, :vendor, :model], items)
+      end
+    end
+  end
+
 end

@@ -38,8 +38,9 @@
         %td
           = item.model
         %td
-          - item.pictures.each do |pic|
-            %img{:src => pic.url}
+          - if item.pictures && item.pictures != ""
+            - item.pictures.split(",").each do |pic|
+              %img{:src => pic}
   = paginate @items
 - else
   %p нет записей в БД
